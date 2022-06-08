@@ -762,7 +762,6 @@ local library = {RainbowColorValue = 0, HueSelectionPosition = 0}
 				if stats == nil then
 					stats = false
 				end
-        callback = callback or function() end
 	
 				local ToggleName = Instance.new("Frame")
 				local Title = Instance.new("TextLabel")
