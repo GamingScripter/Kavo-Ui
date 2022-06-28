@@ -13,7 +13,6 @@ local TweenService = game:GetService("TweenService")
 		Tween:Play()
 	end
 
-	topbarobject.InputBegan:Connect(
 		function(input)
 			if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
 				Dragging = true
