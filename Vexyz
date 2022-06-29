@@ -22,6 +22,7 @@ local themes = {
 	TextColor = Color3.fromRGB(255, 255, 255)
 }
 
+do
 	function utility:Create(instance, properties, children)
 		local object = Instance.new(instance)
 		
@@ -154,43 +155,44 @@ local themes = {
 		return key
 	end
 	
+	function Kavo:DraggingEnabled(frame, parent)
+        
+    parent = parent or frame
+    
+    -- stolen from wally or kiriot, kek
+    local dragging = false
+    local dragInput, mousePos, framePos
 
-local function MakeDraggable(topbarobject, object)
-    local Dragging = nil
-    local DragInput = nil
-    local DragStart = nil
-    local StartPosition = nil
-    
-    local function Update(input)
-        local Delta = input.Position - DragStart
-        object.Position = UDim2.new(StartPosition.X.Scale, StartPosition.X.Offset + Delta.X, StartPosition.Y.Scale, StartPosition.Y.Offset + Delta.Y)
-    end
-    
-    topbarobject.InputBegan:Connect(function(input)
+    frame.InputBegan:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-            Dragging = true
-            DragStart = input.Position
-            StartPosition = object.Position
+            dragging = true
+            mousePos = input.Position
+            framePos = parent.Position
             
             input.Changed:Connect(function()
                 if input.UserInputState == Enum.UserInputState.End then
-                    Dragging = false
+                    dragging = false
                 end
             end)
         end
     end)
-    
-    topbarobject.InputChanged:Connect(function(input)
+
+    frame.InputChanged:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-            DragInput = input
+            dragInput = input
         end
     end)
-    
-    UserInputService.InputChanged:Connect(function(input)
-        if input == DragInput and Dragging then
-            Update(input)
+
+    input.InputChanged:Connect(function(input)
+        if input == dragInput and dragging then
+            local delta = input.Position - mousePos
+            parent.Position  = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
         end
     end)
+end
+
+function Utility:TweenObject(obj, properties, duration, ...)
+    tween:Create(obj, tweeninfo(duration, ...), properties):Play()
 end
 
 -- classes
@@ -288,7 +290,7 @@ do
 		})
 		
 		utility:InitializeKeybind()
-		utility:DraggingEnabled(container.Main.TopBar, container.Main)
+		Kavo:DraggingEnabled(container.Main.TopBar, container.Main)
 		
 		return setmetatable({
 			container = container,
