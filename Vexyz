@@ -1346,10 +1346,6 @@ do
 			end
 		end
 		
-		utility:DraggingEnded(function()
-			draggingColor, draggingCanvas = false, false
-		end)
-		
 		if default then
 			self:updateColorPicker(colorpicker, nil, default)
 			
