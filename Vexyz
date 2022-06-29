@@ -155,7 +155,7 @@ do
 		return key
 	end
 	
-	function Kavo:DraggingEnabled(frame, parent)
+	function utility:DraggingEnabled(frame, parent)
         
     parent = parent or frame
     
@@ -191,8 +191,9 @@ do
     end)
 end
 
-function Utility:TweenObject(obj, properties, duration, ...)
+function utility:TweenObject(obj, properties, duration, ...)
     tween:Create(obj, tweeninfo(duration, ...), properties):Play()
+end
 end
 
 -- classes
@@ -290,7 +291,7 @@ do
 		})
 		
 		utility:InitializeKeybind()
-		Kavo:DraggingEnabled(container.Main.TopBar, container.Main)
+		utility:DraggingEnabled(container.Main.TopBar, container.Main)
 		
 		return setmetatable({
 			container = container,
@@ -2164,5 +2165,5 @@ do
 	end
 end
 
-print("dino was here :\)")
+print("GamingScripter Was Here :)")
 return library
