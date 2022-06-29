@@ -22,7 +22,6 @@ local themes = {
 	TextColor = Color3.fromRGB(255, 255, 255)
 }
 
-do
 	function utility:Create(instance, properties, children)
 		local object = Instance.new(instance)
 		
