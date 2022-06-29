@@ -1636,10 +1636,6 @@ do
 		end
 		
 		self:updateSlider(slider, nil, value, min, max)
-		
-		utility:DraggingEnded(function()
-			dragging = false
-		end)
 
 		slider.MouseButton1Down:Connect(function(input)
 			dragging = true
