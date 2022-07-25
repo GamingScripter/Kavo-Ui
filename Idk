@@ -61,7 +61,7 @@ function Library:CreateWindow(Config, Parent)
 	Screen.Parent = Parent
 	Topbar.WindowName.Text = Config.WindowName
 
-	utility:DraggingEnabled(Topbar,Main)
+	utility:DraggingEnabled(Topbar, Main)
 	
 	local function CloseAll()
 		for _,Tab in pairs(TContainer:GetChildren()) do
