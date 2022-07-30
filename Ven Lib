@@ -500,7 +500,7 @@ function lib:Window(text)
 			placetoslide.InputEnded:Connect(
 				function(input)
 					if input.UserInputType == Enum.UserInputType.MouseButton1 then
-						dragging = false
+						dragging = true
 					end
 				end
 			)
